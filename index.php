@@ -29,7 +29,10 @@ require_once 'parts/header.php';
             <img src="img/<?= $product['img']?>" alt="<?= $product['rus_name']?>">
         </a>
         <div class="label"><?= $product['rus_name']?> (<?= $product['price']?>)</div>
-        <button type="submit">Добавить в корзину</button>
+        <form action="actions/add.php" method="post">
+            <input type="hidden" name="id" value="<?= $product['id']?>">
+            <input type="submit" value="Добавить в корзину">
+        </form>
     </div>
     <? } ?>
 </div>
