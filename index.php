@@ -16,7 +16,7 @@ if(isset($_GET['cat'])) {
 <div class="main">
     <? foreach($products as $product) {?>
     <div class="card">
-        <a href="product.php">
+        <a href="product.php?product=<?= $product['title'] ?>">
             <img src="img/<?= $product['img']?>" alt="<?= $product['rus_name']?>">
         </a>
         <div class="label"><?= $product['rus_name']?> (<?= $product['price']?>)</div>

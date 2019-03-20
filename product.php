@@ -2,13 +2,19 @@
 
 require_once 'parts/header.php';
 
+if(isset($_GET['product'])) {
+    $currentProduct = $_GET['product'];
+    $product = $connect->query("SELECT * FROM products WHERE title = '$currentProduct'");
+    $product = $product->fetch(PDO::FETCH_ASSOC);
+}
+
 ?>
 
 <div class="product-card">
     <a href="index.php">Вернуться на главную</a>
 
-    <h2>Товар (55 рублей)</h2>
-    <div class="descr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, assumenda corporis deserunt dicta dolores ex illum inventore iusto nam nisi nobis obcaecati perspiciatis qui ratione recusandae similique sunt veritatis voluptatibus.</div>
-    <img width="300" src="img/amanita.jpg" alt="Фото">
+    <h2><?=$product['rus_name'] ?> (<?=$product['price'] ?> рублей)</h2>
+    <div class="descr"><?=$product['description'] ?></div>
+    <img width="300" src="img/<?=$product['img'] ?>" alt="<?=$product['rus_name'] ?>">
     <button type="submit">Добавить в корзину</button>
 </div>
