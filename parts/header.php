@@ -5,6 +5,16 @@ require_once 'db/db.php';
 $cats = $connect->query("SELECT * FROM cats");
 $cats = $cats->fetchAll(PDO::FETCH_ASSOC);
 
+if(isset($_GET['cat'])) {
+    $currentCat = $_GET['cat'];
+    $products = $connect->query("SELECT * FROM products WHERE cat = '$currentCat'");
+
+    if(!$products->rowCount()) {
+        header("Location: /index.php");
+        die();
+    }
+}
+
 ?>
 <!doctype html>
 <html lang="ru">

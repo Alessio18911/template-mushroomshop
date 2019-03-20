@@ -2,8 +2,14 @@
 
 require_once 'parts/header.php';
 
-$products = $connect->query("SELECT * FROM products");
-$products = $products->fetchAll(PDO::FETCH_ASSOC);
+if(isset($_GET['cat'])) {
+    $currentCat = $_GET['cat'];
+    $products = $connect->query("SELECT * FROM products WHERE cat = '$currentCat'");
+    $products = $products->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $products = $connect->query("SELECT * FROM products");
+    $products = $products->fetchAll(PDO::FETCH_ASSOC);
+}
 
 ?>
 
