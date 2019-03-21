@@ -19,7 +19,11 @@ foreach($_SESSION['cart'] as $product) {
     <button type="submit">Удалить</button>
 </div>
 <? } ?>
+<? } else { ?>
+    <p class="cart-empty">Нет товаров в корзине</p>
 <? } ?>
+
+
 <hr>
 
 </body>

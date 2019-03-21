@@ -130,6 +130,10 @@ nav ul li {
     width: 80%;
 }
 
+.cart-empty {
+    text-align: center;
+}
+
 .order {
     display: flex;
     flex-direction: column;
