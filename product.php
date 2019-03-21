@@ -16,5 +16,8 @@ if(isset($_GET['product'])) {
     <h2><?=$product['rus_name'] ?> (<?=$product['price'] ?> рублей)</h2>
     <div class="descr"><?=$product['description'] ?></div>
     <img width="300" src="img/<?=$product['img'] ?>" alt="<?=$product['rus_name'] ?>">
-    <button type="submit">Добавить в корзину</button>
+    <form action="actions/add.php" method="post">
+            <input type="hidden" name="id" value="<?= $product['id']?>">
+            <input type="submit" value="Добавить в корзину">
+    </form>
 </div>

@@ -4,7 +4,7 @@ require_once 'parts/header.php';
 
 
 
-
+if(isset($_SESSION['cart'])) {
 foreach($_SESSION['cart'] as $product) {
 
 ?>
@@ -18,6 +18,7 @@ foreach($_SESSION['cart'] as $product) {
     </div>
     <button type="submit">Удалить</button>
 </div>
+<? } ?>
 <? } ?>
 <hr>
 
