@@ -7,18 +7,20 @@ if(isset($_POST['id'])) {
     $product = $connect->query("SELECT * FROM products WHERE id = '$id'");
     $product = $product->fetch(PDO::FETCH_ASSOC);
 
-    // echo ('<pre>');
-    // var_dump($product);
-    // echo ('</pre>');
-
-    //$_SESSION['cart'] = ;
+    if(isset($_SESSION['cart'][$id])) {
+        $_SESSION['cart'][$id]['quantity'] += 1;
+    } else {
+        $_SESSION['cart'][$id] = [
+            'title' => $product['title'],
+            'price' => $product['price'],
+            'rus_name' => $product['rus_name'],
+            'img' => $product['img'],
+            'quantity' => 1
+        ];
+    }
 
     $_SESSION['totalQuantity'] = isset($_SESSION['totalQuantity']) ? $_SESSION['totalQuantity'] += 1 : 1;
     $_SESSION['totalPrice'] = isset($_SESSION['totalPrice']) ? $_SESSION['totalPrice'] += $product['price'] : $product['price'];
 }
 
 header("Location: /index.php");
-
-// echo ('<pre>');
-// var_dump($_SESSION);
-// echo ('</pre>');
