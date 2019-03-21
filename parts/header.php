@@ -5,7 +5,7 @@ require_once 'db/db.php';
 $cats = $connect->query("SELECT * FROM cats");
 $cats = $cats->fetchAll(PDO::FETCH_ASSOC);
 
-//$_SESSION = [];
+$_SESSION = [];
 
 ?>
 <!doctype html>

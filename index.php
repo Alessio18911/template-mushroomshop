@@ -7,7 +7,7 @@ if(isset($_GET['cat'])) {
     $products = $connect->query("SELECT * FROM products WHERE cat = '$currentCat'");
 
     if(!$products->rowCount()) {
-        header("Location: /");
+        http_response_code(404);
         exit();
     }
 
