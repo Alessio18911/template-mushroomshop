@@ -4,9 +4,9 @@ require_once '../db/db.php';
 session_start();
 
 if(isset($_POST['order'])) {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
+    $username = htmlspecialchars($_POST['username']);
+    $email = htmlspecialchars($_POST['email']);
+    $phone = htmlspecialchars($_POST['phone']);
     $connect->query("INSERT INTO userorder(username, email, phone) VALUES('$username', '$email', '$phone')");
 
     $lastId = $connect->query("SELECT MAX(id) FROM userorder WHERE email = '$email'")->fetch(PDO::FETCH_ASSOC);

@@ -3,7 +3,7 @@
 require_once 'db/db.php';
 
 if(isset($_GET['product'])) {
-    $currentProduct = $_GET['product'];
+    $currentProduct = htmlspecialchars($_GET['product']);
     $product = $connect->query("SELECT * FROM products WHERE title = '$currentProduct'")->fetch(PDO::FETCH_ASSOC);
 
     if(!$product) {

@@ -7,7 +7,7 @@ if(isset($_POST['id'])) {
         unset($_SESSION['order']);
     }
 
-    $id = $_POST['id'];
+    $id = htmlspecialchars($_POST['id']);
     $product = $connect->query("SELECT * FROM products WHERE id = '$id'")->fetch(PDO::FETCH_ASSOC);
 
     if(isset($_SESSION['cart'][$id])) {
