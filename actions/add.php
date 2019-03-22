@@ -3,6 +3,10 @@ session_start();
 require_once '../db/db.php';
 
 if(isset($_POST['id'])) {
+    if(isset($_SESSION['order'])) {
+        unset($_SESSION['order']);
+    }
+
     $id = $_POST['id'];
     $product = $connect->query("SELECT * FROM products WHERE id = '$id'")->fetch(PDO::FETCH_ASSOC);
 

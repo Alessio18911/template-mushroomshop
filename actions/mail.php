@@ -19,6 +19,16 @@ if(isset($_POST['order'])) {
     }
 
     $message .= "<p>Сумма заказа: {$_SESSION['totalPrice']} рублей.</p>";
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+    $subject = "Ваш заказ под номером $lastId принят.";
 
-    echo $message;
+    mail($email, $subject, $message, $headers);
+    unset($_SESSION['totalPrice']);
+    unset($_SESSION['totalQuantity']);
+    unset($_SESSION['cart']);
+
+    $_SESSION['order'] = $lastId;
 }
+
+header("Location: {$_SERVER['HTTP_REFERER']}");

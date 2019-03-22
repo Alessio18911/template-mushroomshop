@@ -2,11 +2,15 @@
 
 require_once 'parts/header.php';
 
-if(null !== $_SESSION['cart'] && count($_SESSION['cart']) == 0) { ?>
+if(isset($_SESSION['order'])) { ?>
+    <h2 class="cart-title">Ваш заказ под номером <?= $_SESSION['order'] ?> принят</h2>
+    <a class="back" href="index.php">На главную</a>
+<? }
+else if(isset($_SESSION['cart']) && count($_SESSION['cart']) == 0) { ?>
     <h2 class="cart-title">Ваша корзина пуста :(</h2>
     <a class="back" href="index.php">На главную</a>
-<? } else {
-
+<? }
+else {
 foreach($_SESSION['cart'] as $key=>$product) {
 
 ?>
