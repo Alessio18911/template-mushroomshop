@@ -4,8 +4,7 @@ require_once '../db/db.php';
 
 if(isset($_POST['id'])) {
     $id = $_POST['id'];
-    $product = $connect->query("SELECT * FROM products WHERE id = '$id'");
-    $product = $product->fetch(PDO::FETCH_ASSOC);
+    $product = $connect->query("SELECT * FROM products WHERE id = '$id'")->fetch(PDO::FETCH_ASSOC);
 
     if(isset($_SESSION['cart'][$id])) {
         $_SESSION['cart'][$id]['quantity'] += 1;
@@ -23,4 +22,4 @@ if(isset($_POST['id'])) {
     $_SESSION['totalPrice'] = isset($_SESSION['totalPrice']) ? $_SESSION['totalPrice'] += $product['price'] : $product['price'];
 }
 
-header("Location: ".$_SERVER['HTTP_REFERER']);
+header("Location: {$_SERVER['HTTP_REFERER']}");

@@ -1,25 +1,18 @@
 <?php
 
-require_once 'db/db.php';
+require_once 'parts/header.php';
 
 if(isset($_GET['cat'])) {
     $currentCat = $_GET['cat'];
-    $products = $connect->query("SELECT * FROM products WHERE cat = '$currentCat'");
+    $products = $connect->query("SELECT * FROM products WHERE cat = '$currentCat'")->fetchAll(PDO::FETCH_ASSOC);
 
-    if(!$products->rowCount()) {
-        http_response_code(404);
-        exit();
+    if(!$products) {
+        die('Такой категории не найдено');
     }
 
-    $products = $products->fetchAll(PDO::FETCH_ASSOC);
-
 } else {
-    $products = $connect->query("SELECT * FROM products");
-    $products = $products->fetchAll(PDO::FETCH_ASSOC);
+    $products = $connect->query("SELECT * FROM products")->fetchAll(PDO::FETCH_ASSOC);
 }
-
-require_once 'parts/header.php';
-
 ?>
 
 <div class="main">
@@ -29,10 +22,7 @@ require_once 'parts/header.php';
             <img src="img/<?= $product['img']?>" alt="<?= $product['rus_name']?>">
         </a>
         <div class="label"><?= $product['rus_name']?> (<?= $product['price']?>)</div>
-        <form action="actions/add.php" method="post">
-            <input type="hidden" name="id" value="<?= $product['id']?>">
-            <input type="submit" value="Добавить в корзину">
-        </form>
+        <?php require('parts/add-form.php'); ?>
     </div>
     <? } ?>
 </div>

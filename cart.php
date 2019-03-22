@@ -2,8 +2,6 @@
 
 require_once 'parts/header.php';
 
-
-
 if(isset($_SESSION['cart'])) {
 foreach($_SESSION['cart'] as $product) {
 

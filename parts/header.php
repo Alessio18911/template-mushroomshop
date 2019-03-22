@@ -2,8 +2,7 @@
 session_start();
 require_once 'db/db.php';
 
-$cats = $connect->query("SELECT * FROM cats");
-$cats = $cats->fetchAll(PDO::FETCH_ASSOC);
+$cats = $connect->query("SELECT * FROM cats")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!doctype html>
